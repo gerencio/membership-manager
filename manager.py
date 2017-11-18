@@ -76,7 +76,7 @@ def docker_checker():
     print('listening for events...', file=stderr)
     open('/manager-ready', 'a').close()
     for event in client.events(decode=True, filters=filters):
-        worker_name = event['Actor']['Attributes']['name']
+        worker_name = event['Actor']['Attributes']['io.rancher.container.name']
         status = event['status']
 
         status=actions[status](conn, worker_name)
